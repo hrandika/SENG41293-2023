@@ -1,0 +1,14 @@
+{
+  "files.exclude": {
+    "node_modules": true,
+    ".*": true,
+    "jest.config.ts": true,
+    "jest.preset.js": true,
+    "nx.json": true,
+    "package-lock.json": true,
+    "tools": true,
+    "README.md": true,
+    "tsconfig.base.json": true,
+    ".vscode": true
+  }
+}
