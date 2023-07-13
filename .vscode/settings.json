@@ -10,5 +10,7 @@
     "README.md": true,
     "tsconfig.base.json": true,
     ".vscode": true
-  }
+  },
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true
 }
