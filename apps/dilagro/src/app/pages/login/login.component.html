@@ -1,13 +1,30 @@
-<form class="login-form" [formGroup]="formGroup">
+<form class="login-form" [formGroup]="loginFormGroup">
   <h3>Login</h3>
+
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
-    <input matInput />
+    <input matInput [formControl]="emailCtrl" />
+
+    <mat-error *ngIf="emailCtrl.hasError('email')">
+      Please enter a valid email address
+    </mat-error>
+
+    <mat-error *ngIf="emailCtrl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
-    <input type="password" matInput />
+    <input type="password" matInput formControlName="password" />
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!loginFormGroup.valid"
+    (click)="onLogin()"
+  >
+    Login
+  </button>
 </form>
