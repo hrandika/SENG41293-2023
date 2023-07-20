@@ -9,7 +9,13 @@ import { AppState } from './state/app/app.state';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, CommonModule, MatToolbarModule, MatProgressBarModule],
+  imports: [
+    RouterModule,
+    CommonModule,
+    //
+    MatToolbarModule,
+    MatProgressBarModule,
+  ],
   selector: 'seng41293-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
