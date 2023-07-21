@@ -21,7 +21,7 @@ import { AppState } from './state/app/app.state';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  email$: Observable<string>;
+  email$: Observable<string | undefined | null>;
   loading$: Observable<boolean>;
 
   constructor(private store: Store) {

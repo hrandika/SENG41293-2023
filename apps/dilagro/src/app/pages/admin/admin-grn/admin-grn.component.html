@@ -1,1 +1,27 @@
-<button mat-button (click)="toggle()">Toggle Loading</button>
+<form [formGroup]="grnFormGroup">
+  <mat-form-field>
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" [formControl]="dateCtrl" />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [formControl]="nameCtrl" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Phone</mat-label>
+    <input type="number" matInput [formControl]="phoneCtrl" />
+  </mat-form-field>
+  <button mat-raised-button (click)="onSave()">Save</button>
+</form>
+
+<div>
+  <mat-card class="mat-elevation-z1" *ngFor="let grn of grns$ | async">
+    <mat-card-header>
+      <mat-card-title>{{ grn.date }}</mat-card-title>
+      <mat-card-subtitle>{{ grn.customer.name }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content> </mat-card-content>
+  </mat-card>
+</div>
