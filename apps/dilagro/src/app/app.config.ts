@@ -15,9 +15,10 @@ import { appRoutes } from './app.routes';
 import { AppState } from './state/app/app.state';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire/compat';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { BaseUrlInterceptorService } from './services/_interceptors/base-url-interceptor/base-url-interceptor.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -53,6 +54,11 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(provideAuth(() => getAuth())),
     importProvidersFrom(provideFirestore(() => getFirestore())),
     importProvidersFrom(HttpClientModule),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseUrlInterceptorService,
+      multi: true,
+    },
     importProvidersFrom(MatMomentDateModule),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
