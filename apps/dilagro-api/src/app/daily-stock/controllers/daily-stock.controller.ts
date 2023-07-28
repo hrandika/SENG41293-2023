@@ -7,9 +7,9 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { DailyStockService } from './daily-stock.service';
-import { CreateDailyStockDto } from './dto/create-daily-stock.dto';
-import { UpdateDailyStockDto } from './dto/update-daily-stock.dto';
+import { CreateDailyStockDto } from '../dto/create-daily-stock.dto';
+import { UpdateDailyStockDto } from '../dto/update-daily-stock.dto';
+import { DailyStockService } from '../services/daily-stock.service';
 
 @Controller('daily-stock')
 export class DailyStockController {

@@ -14,7 +14,7 @@
         "outputPath": "dist/apps/dilagro-api",
         "main": "apps/dilagro-api/src/main.ts",
         "tsConfig": "apps/dilagro-api/tsconfig.app.json",
-        "assets": ["apps/dilagro-api/src/assets"],
+        "assets": ["apps/dilagro-api/src/environments"],
         "isolatedConfig": true,
         "webpackConfig": "apps/dilagro-api/webpack.config.js"
       },

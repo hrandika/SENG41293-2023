@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { DailyStockController } from './daily-stock.controller';
-import { DailyStockService } from './daily-stock.service';
+import { DailyStockService } from '../services/daily-stock.service';
 
 describe('DailyStockController', () => {
   let controller: DailyStockController;
