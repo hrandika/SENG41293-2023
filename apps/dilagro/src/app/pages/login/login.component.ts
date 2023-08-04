@@ -11,8 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { UpdateUser } from '../../state/app/app.actions';
+import { Login, UpdateUser } from '../../state/app/app.actions';
 import { catchError, from, tap, throwError } from 'rxjs';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'seng41293-login',
@@ -27,14 +28,18 @@ export class LoginComponent {
   loginFormGroup: FormGroup;
   private angularFireAuth = inject(AngularFireAuth);
 
-  constructor(private router: Router, private store: Store) {
+  constructor(
+    private router: Router,
+    private store: Store,
+    private authService: AuthService
+  ) {
     this.emailCtrl = new FormControl('randika@dilagro.lk', [
       Validators.required,
       Validators.email,
     ]);
 
     this.loginFormGroup = new FormGroup({
-      email: this.emailCtrl,
+      username: this.emailCtrl,
       password: new FormControl('passCCord1@2#', [
         Validators.required,
         Validators.minLength(3),
@@ -42,24 +47,29 @@ export class LoginComponent {
     });
   }
 
-  onLogin() {
-    const password = this.loginFormGroup.get('password')?.value;
-    const authPromise = this.angularFireAuth.signInWithEmailAndPassword(
-      this.emailCtrl.value,
-      password
-    );
+  // onLogin() {
+  //   const password = this.loginFormGroup.get('password')?.value;
+  //   const authPromise = this.angularFireAuth.signInWithEmailAndPassword(
+  //     this.emailCtrl.value,
+  //     password
+  //   );
 
-    from(authPromise)
-      .pipe(
-        tap((credential) => {
-          if (credential.user)
-            this.store.dispatch(new UpdateUser(credential.user));
-        }),
-        tap(() => this.router.navigate(['/admin'])),
-        catchError((e) => {
-          return throwError(() => e);
-        })
-      )
-      .subscribe();
+  //   from(authPromise)
+  //     .pipe(
+  //       tap((credential) => {
+  //         if (credential.user)
+  //           this.store.dispatch(new UpdateUser(credential.user));
+  //       }),
+  //       tap(() => this.router.navigate(['/admin'])),
+  //       catchError((e) => {
+  //         return throwError(() => e);
+  //       })
+  //     )
+  //     .subscribe();
+  // }
+
+  onLogin() {
+    const value = this.loginFormGroup.value;
+    this.store.dispatch(new Login(value.username, value.password));
   }
 }

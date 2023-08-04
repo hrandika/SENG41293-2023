@@ -1,24 +1,25 @@
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {
   ApplicationConfig,
   importProvidersFrom,
   isDevMode,
 } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { appRoutes } from './app.routes';
-import { AppState } from './state/app/app.state';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { AngularFireModule } from '@angular/fire/compat';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { BaseUrlInterceptorService } from './services/_interceptors/base-url-interceptor/base-url-interceptor.service';
+import { AppState } from './state/app/app.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,6 +30,7 @@ export const appConfig: ApplicationConfig = {
         developmentMode: isDevMode(),
       })
     ),
+    importProvidersFrom(NgxsStoragePluginModule.forRoot()),
     importProvidersFrom(
       provideFirebaseApp(() =>
         initializeApp({

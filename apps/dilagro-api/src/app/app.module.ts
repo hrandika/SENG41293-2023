@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { getEnvPath } from './app.helper';
 import { DailyStockModule } from './daily-stock/daily-stock.module';
+import { AuthModule } from './auth/auth.module';
 
 const envFilePath: string = getEnvPath(`${__dirname}/environments`);
 console.log(envFilePath);
@@ -10,6 +11,7 @@ console.log(envFilePath);
 @Module({
   imports: [
     DailyStockModule,
+    AuthModule,
     ConfigModule.forRoot({ envFilePath }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
