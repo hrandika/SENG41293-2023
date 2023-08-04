@@ -1,1 +1,4 @@
-export class CreateDailyStockDto {}
+export class CreateDailyStockDto {
+  date: Date;
+  amount: number;
+}

@@ -11,8 +11,10 @@ export class DailyStockService {
     @InjectModel(DailyStock.name) private dailyStockModel: Model<DailyStock>
   ) {}
 
-  create(createDailyStockDto: CreateDailyStockDto) {
-    return 'This action adds a new dailyStock';
+  create(
+    createDailyStockDto: CreateDailyStockDto
+  ): Promise<DailyStockDocument> {
+    return this.dailyStockModel.create(createDailyStockDto);
   }
 
   findAll(): Promise<DailyStockDocument[]> {
