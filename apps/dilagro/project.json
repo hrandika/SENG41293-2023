@@ -10,7 +10,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/dilagro",
+        "outputPath": "dist/dilagro/browser",
         "index": "apps/dilagro/src/index.html",
         "main": "apps/dilagro/src/main.ts",
         "polyfills": ["zone.js"],
@@ -99,6 +99,59 @@
       "options": {
         "buildTarget": "dilagro:build"
       }
+    },
+    "server": {
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/dilagro/server",
+        "main": "apps/dilagro/server.ts",
+        "tsConfig": "apps/dilagro/tsconfig.server.json"
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media",
+          "sourceMap": true
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false,
+          "vendorChunk": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-ssr": {
+      "executor": "@nguniversal/builders:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "dilagro:build:development",
+          "serverTarget": "dilagro:server:development"
+        },
+        "production": {
+          "browserTarget": "dilagro:build:production",
+          "serverTarget": "dilagro:server:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "prerender": {
+      "executor": "@nguniversal/builders:prerender",
+      "options": {
+        "routes": ["/"]
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "dilagro:build:production",
+          "serverTarget": "dilagro:server:production"
+        },
+        "development": {
+          "browserTarget": "dilagro:build:development",
+          "serverTarget": "dilagro:server:development"
+        }
+      },
+      "defaultConfiguration": "production"
     }
   }
 }

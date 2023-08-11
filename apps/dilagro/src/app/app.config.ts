@@ -20,6 +20,7 @@ import { NgxsModule } from '@ngxs/store';
 import { appRoutes } from './app.routes';
 import { BaseUrlInterceptorService } from './services/_interceptors/base-url-interceptor/base-url-interceptor.service';
 import { AppState } from './state/app/app.state';
+import { provideClientHydration } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -30,6 +31,7 @@ export const appConfig: ApplicationConfig = {
         developmentMode: isDevMode(),
       })
     ),
+    provideClientHydration(),
     importProvidersFrom(NgxsStoragePluginModule.forRoot()),
     importProvidersFrom(
       provideFirebaseApp(() =>

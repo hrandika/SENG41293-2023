@@ -14,25 +14,6 @@
   flex-direction: column;
 }
 
-#cube {
-  display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  justify-content: space-between;
-  width: 50%;
-  gap: 8px;
-  // background-color: #d9d9d9;
-  & div {
-    width: 100px;
-    height: 100px;
-    background-color: #690;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-  }
-}
-
 @media only screen and (max-width: 600px) {
   :host {
     align-items: flex-start;
