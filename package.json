@@ -2,7 +2,11 @@
   "name": "@seng41293/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "migrate:create": "migrate create --template-file ./apps/dilagro-api/src/migrations-utils/template.ts --migrations-dir=\"./apps/dilagro-api/src/migrations\" --compiler=\"ts:./apps/dilagro-api/src/migrations-utils/ts-compiler.js\"",
+    "migrate:up": "migrate --migrations-dir=\"./apps/dilagro-api/src/migrations\" --compiler=\"ts:./apps/dilagro-api/src/migrations-utils/ts-compiler.js\" up",
+    "migrate:down": "migrate --migrations-dir=\"./apps/dilagro-api/src/migrations\" --compiler=\"ts:./apps/dilagro-api/src/migrations-utils/ts-compiler.js\" down"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.1.0",
@@ -30,6 +34,7 @@
     "@ngxs/store": "^3.8.1",
     "@nx/angular": "16.4.0",
     "axios": "^1.0.0",
+    "migrate": "^2.0.0",
     "moment": "^2.29.4",
     "mongoose": "^7.4.1",
     "reflect-metadata": "^0.1.13",

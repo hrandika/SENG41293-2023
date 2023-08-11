@@ -1,12 +1,45 @@
 :host {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
+  align-items: center;
+  height: calc(100vh - 64px);
+  gap: 16px;
+  // 100vh = 768px  - 64px =  704px
 }
 
 .login-form {
-  width: 90%;
+  width: 40%;
   display: flex;
   flex-direction: column;
+}
+
+#cube {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: space-between;
+  width: 50%;
+  gap: 8px;
+  // background-color: #d9d9d9;
+  & div {
+    width: 100px;
+    height: 100px;
+    background-color: #690;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  :host {
+    align-items: flex-start;
+    height: calc(100vh - 56px);
+  }
+
+  .login-form {
+    width: 90%;
+  }
 }
